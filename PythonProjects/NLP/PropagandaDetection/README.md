@@ -9,9 +9,10 @@ It is dangerous to ignore propaganda which shapes the information and changes ou
 # Overview
 ## Dataset
 The dataset contains two files one for training and another for testing. Each file is in tab-separated-value (.tsv) format with 2 columns as illustrated below. 
-label	sentence
-flag waving	I want to get <BOS> our soldiers <EOS> out. 
-not propaganda 	No, <BOS> he <EOS> will not be confirmed.
+| label | sentence |
+| --- | --- |
+| flag waving |	I want to get \<BOS> our soldiers \<EOS> out. |
+| not propaganda | 	No, \<BOS> he \<EOS> will not be confirmed.|
 
 The first column contains a label from a set of 9 possibilities which are:
 1. flag waving
@@ -56,11 +57,11 @@ Where P(A|B) = Posterior Probability of a class given features, P(B|A) = Likelih
 In the context of information retrieval, TF-IDF (term frequency-inverse document frequency), reflects how important a word is to a document in a collection or corpus. It is often used as a weighting factor for information retrieval, and text mining. The TF-IDF value increases proportionally to the number of times a word appears in the document. 
 Term Frequency is the relative frequency of a term (word) within a given document. It is obtained as the number of times a word appears in a text, divided by the total number of words appearing in the text.
 
-$$TF(t,d)=  f_(t,d)/(∑_(t∈d)▒〖ft,d〗)$$
+$$TF(t,d) = \frac{f_{t,d}}{\sum_{t\epsilon D}f_{t,d}} $$
 
 Inverse Document Frequency measures how common or rare a word is across all documents. IDF is calculated by dividing the total number of documents by the number of documents in the collection containing the term.
 
-$$IDF(t,D)=log⁡〖N/(|{d∈D,t∈d}|)〗$$
+$$IDF(t,D)=log⁡ \frac {N}{|\{d∈D,t∈d \}|}$$
 
 If a term does not appear in the corpus it leads to dividing by zero to overcome this we add 1.
 TF-IDF is the product of these two terms TF and IDF.
