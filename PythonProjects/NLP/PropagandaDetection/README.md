@@ -29,19 +29,25 @@ The additional tokens <BOS> and <EOS> indicate the beginning and end of the span
 
 **Assigned Task:**
 
-	Build and evaluate at least 2 approaches to classify whether a span text in the given sentence is propaganda or not.
-	Build and evaluate at least 2 approaches to classify the propaganda techniques.
+	1. Build and evaluate at least 2 approaches to classify whether a span text in the given sentence is propaganda or not.
+
+	2. Build and evaluate at least 2 approaches to classify the propaganda techniques.
 
 **Approaches:**
 
-	Text probability based on n-gram language models
-	Text similarity or classification based on uncontextualised word embedding methods e.g., word2vec 
-	Neural language models 
-	Pretrained large language models e.g., BERT 
+	1. Text probability based on n-gram language models
+
+	2. Text similarity or classification based on uncontextualised word embedding methods e.g., word2vec 
+
+	3. Neural language models 
+
+	4. Pretrained large language models e.g., BERT 
+
 ## Methodology
+
 I applied all the given 4 approaches for task 1 and 3 approaches for task 2 along with other machine learning algorithms like Logistic Regression, Support Vector Machine, Decision Tree, Random Forest, MultinomialNB, XGBoost, etc. The findings are included in the result section.
 
-1. N-gram language model with Naïve Bayes Classifier
+1. **N-gram language model with Naïve Bayes Classifier**
 
 N-grams are simple, powerful, and easy-to-use techniques. N-grams are a continuous sequence of words (tokens) where the number of words is based on n, like in unigram there is a single word in each token in the given sentence. Then store the n-gram token and then count in the dictionary. They have a wide range of applications, like language models, semantic features, spelling correction, machine translation, text mining, etc. The major disadvantages are N-grams cannot deal Out Of Vocabulary (OOV) words and large sparsity concerns. 
 
@@ -52,7 +58,7 @@ The algorithm works by using Bayes’ theorem to calculate the probability of a 
 $$P(A│B)=  (P(B│A)P(A))/(P(B))$$
 Where P(A|B) = Posterior Probability of a class given features, P(B|A) = Likelihood or probability of feature given class, P(A) = Prior Probability of class, P(B) = normalizing constant or probability of features 
 
-2. TF-IDF Vectorization
+2. **TF-IDF Vectorization**
 
 In the context of information retrieval, TF-IDF (term frequency-inverse document frequency), reflects how important a word is to a document in a collection or corpus. It is often used as a weighting factor for information retrieval, and text mining. The TF-IDF value increases proportionally to the number of times a word appears in the document. 
 Term Frequency is the relative frequency of a term (word) within a given document. It is obtained as the number of times a word appears in a text, divided by the total number of words appearing in the text.
@@ -72,7 +78,7 @@ The value of a word increases proportionally to count, but it is inversely propo
 
 I used the Tf-Idf vectorizer from the scikit-learn to create vector representation. Then I trained different machine learning models (Logistic Regression, KNN Classifier, Decision Tree, Linear SVM, Random Forest, SGD Classifier, and XGBoost Classifier). The accuracy and f1-score obtained are included in the results section. 
 
-3. Word Embedding methods (Gensim Word2Vec and GoogleNews vectors negative 300)
+3. **Word Embedding methods (Gensim Word2Vec and GoogleNews vectors negative 300)**
 
 Word embedding is a technique where words are represented in vector form. These vectors are calculated from the probability distribution for each word appearing before or after another. Words of the same context usually appear together in the corpus, so they will be close in the vector space as well. The word2vec algorithms include skip-gram and CBOW models, using either hierarchical softmax or negative sampling. 
 
@@ -88,7 +94,7 @@ A few limitations are: Word2Vec cannot handle out-of-vocabulary words. If we wan
 
 I used Gensim Word2Vec and pre-trained GoogleNews vectors negative models. First, I converted sentences into a list of tokenized sentences and then I created a feature vector by averaging all embeddings of all sentences. I trained different machine learning models (Logistic Regression, KNN Classifier, Decision Tree, Linear SVM, Random Forest, SGD Classifier, and XGBoost Classifier) on these feature embeddings. The accuracy and f1-score obtained are included in the results section.
 
-4. Neural Network (Convolutional Neural Network and Bidirectional Long Short Term Memory)
+4. **Neural Network (Convolutional Neural Network and Bidirectional Long Short Term Memory)**
 
 Neural networks are inspired by the neural networks in the human brain. They consist of neurons (also called nodes) which are connected to each other.
  
@@ -107,7 +113,7 @@ I used TensorFlow Keras deep learning API for the implementation of CNN. Keras T
 
 A bidirectional LSTM, often known as a BiLSTM, is a sequence processing model that consists of two LSTMs, the first model takes the input as it is, and the second model takes a backward direction copy of the sequence. This special architecture of BiLSTM effectively increases the quantity of data available, giving the algorithm better context. I used Glove word embedding for word vector representation.
  
-5. Bidirectional Encoder Representations from Transformers (BERT)
+5. **Bidirectional Encoder Representations from Transformers (BERT)**
 
 Bidirectional Encoder Representations from Transformers (BERT) is a family of masked-language models introduced in 2018 by researchers at Google. Bert uses the bidirectional context of the language model, it tries to mask both left-to-right & right-to-left to create intermediate tokens to be used for the prediction tasks hence the term bidirectional. It uses a transformer network & attention mechanism that learns the contextual relationship between words. It is widely used for the tasks like named entity recognition and question answering.
 
