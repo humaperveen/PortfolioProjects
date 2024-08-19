@@ -36,13 +36,17 @@ Fig 2. Amino Acid Distribution
 
 ## Machine Learning Methods
 **Data Transformation**
+
 Sequences and classes were initially converted into numerical form using CountVectorizer and LabelEncoder. The dataset was then split into training and test sets with an 80:20 ratio. To optimize the model's hyperparameters, RandomizedSearchCV was employed, ensuring the best possible configuration for each machine learning method.
+
 **Methods**
+
 Several machine learning algorithms were applied to the dataset. These included K-Nearest Neighbors (KNN), Multinomial Naive Bayes, Logistic Regression, Multilayer Perceptron, and Decision Tree Classifier. Additionally, various ensemble methods were utilized, such as Random Forest Classifier, XGBoost Classifier, Voting Classifier, and Stacking Classifier, to improve classification performance through model combination and aggregation.
 
 
 ## Deep Learning Methods
 **Further pre-processing of sequences with Keras**
+
 Further pre-processing of sequences was conducted using Keras. The sequences were tokenized, translating each character into a number, and padded to ensure uniform length with maximum lengths of 100, 256, and 512 for evaluating model efficiency and performance. For instance, a sequence ‘GSAFCNLARCELSCRSLGLLGKCIGEECKCVPY’ will be converted into encoding like this [ 6, 16, 1, 5, 2, 12, 10, 1, 15, 2, 4, 10, 16, 2, 15, 16, 10, 6, 10, 10, 6, 9, 2, 8, 6, 4, 4, 2, 9, 2, 18, 13, 20]. 
 The padded sequence would be like the below:
 [ 6, 16, 1, 5, 2, 12, 10, 1, 15, 2, 4, 10, 16, 2, 15, 16, 10, 6, 10, 10, 6, 9, 2, 8, 6, 4, 4, 2, 9, 2, 18, 13, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -62,6 +66,7 @@ Recent success in NLP suggests using word embeddings which are already implement
 
 ![CNN1D Mechanism](https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig4.png)  
 Fig 4. CNN1D Mechanism
+
 A multichannel architecture is used for Convolutional neural network implementation. There are 3 channels. Filter size is 128 and kernel size is 12 in first channel. In second channel filter size is 64 and kernel size is 6 while in third channel filter size and kernel size are  32 and 3 respectively. These filters slide across the input sequence, performing element-wise multiplications and summations to produce feature maps. The filters capture local patterns and dependencies within the sequence of kernel size like n-gram. Each filter learns different features, allowing the model to capture diverse aspects of the input sequence. The filters with different widths help to capture patterns of varying lengths. An activation function ReLU (Rectified Linear Unit) is applied element-wise to introduce non-linearity into the model which sets negative values to zero. 
 
 Dropout value is set 0.2, dropout works by "dropping out" a fraction of the neurons in a layer with a specified probability of 0.2. This means that the output of those neurons is temporarily ignored or set to zero. Maxpooling1D layer pool size is kept 2. It selects the maximum value within a fixed window size, reducing the dimensionality of the feature maps while preserving the most salient information. The output of the pooling layers is flattened into a one-dimensional vector. After flattening three channels are concatenated together. Then, a fully connected dense layer is  applied that adds representational capacity to the model. Finally, a dense layer is used as the output layer with softmax activation. The model is trained using categorical cross entropy and is compiled using Adam optimizer. An outline of proposed implementation of convolutional neural network is drawn in Fig 5 below.
@@ -79,10 +84,15 @@ Three different BERT models were used in this study: BertForSequenceClassificati
 ### Implementation Steps
 
 a.	**Data Pre-processing:** The preprocessed PDB protein dataset, consisting of protein sequences and their corresponding labels, was loaded for analysis. The dataset was split into training, validation, and testing sets (80:10:10) to evaluate the model's performance. To prepare the protein sequences for input into the model, the BERT tokenizer was used. This tokenizer converts each sequence into a list of tokens, smaller units that BERT can process. The tokens were then converted into input features, including token IDs, attention masks, and segment IDs, which help BERT understand the relationships within the protein sequences.
+
 b.	**Model Initialization:** The model was initialized with pre-trained weights, capturing knowledge from a large corpus of text data to enhance performance on the protein classification task.
+
 c.	**Training:** Hyperparameters for training, such as learning rate (2e-5), batch size (4), and number of epochs (30), were set. During each epoch, the model learned from the protein sequences and their corresponding labels in batches. For each batch, a forward pass was performed, obtaining predicted logits. The cross-entropy loss between the predicted logits and true labels was computed to measure performance. A backward pass computed gradients of the loss with respect to the model's parameters. The optimizer, AdamW, updated the model's parameters based on the gradients to minimize the loss.
+
 d.	**Validation:** After training, the model's performance was evaluated on the validation set containing unseen protein sequences. A forward pass was performed to obtain predicted logits, which were compared to true labels to assess accuracy, precision, recall, and F1-score.
+
 e.	**Fine-tuning and Optimization:** If the model's performance was unsatisfactory, hyperparameters were fine-tuned or different optimization techniques were experimented with. The training loop was repeated with updated settings until the desired performance was achieved.
+
 f.	**Evaluation and Save model:** Once trained and optimized, the model's weights and architecture were saved for future use. Evaluation was performed on testing data to determine the model's performance on unseen data.
 
 ## Model Evaluation Metrics
@@ -147,7 +157,7 @@ Fig 8. Accuracy and loss for CNN model for different sequence length (512, 256, 
 ![Comparison of Deep learning approach](https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig9.png)  
 Fig 9. Comparison of Deep learning approach
 
-From the Fig 11, it is clearly visible that CNN model without class weight demonstrates superior performance in terms of accuracy and F1 scores, indicating better overall classification capability. The CNN model with class weight shows a slight decrease in performance, suggesting that while class weighting can help in addressing class imbalances, it may also introduce complexities that reduce overall effectiveness. The LSTM model underperforms compared to both CNN models, highlighting its limitations in identifying hidden patterns in longer sequences.
+From the Fig 19, it is clearly visible that CNN model without class weight demonstrates superior performance in terms of accuracy and F1 scores, indicating better overall classification capability. The CNN model with class weight shows a slight decrease in performance, suggesting that while class weighting can help in addressing class imbalances, it may also introduce complexities that reduce overall effectiveness. The LSTM model underperforms compared to both CNN models, highlighting its limitations in identifying hidden patterns in longer sequences.
 
 ## Transformer Models
 
@@ -162,6 +172,7 @@ Fig 10. Comparison of Bert Models
     
 ![Error Analysis](https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig11.png) 
 Figure 11. Error Analysis
+
 In general, proteins can be different types of enzymes, signalling proteins, structural proteins, and a variety of other options. Since many proteins are designed to bind in the same locations as one another, they frequently exhibit extremely similar properties. A Hydrolase enzyme and a Hydrolase inhibitor protein, for instance, will have similar structures since they focus on the same regions. 
 
 high precision and high recall that means model is able to identify them because these classes either have enough sample or their structure are not similar to others for instance, Allergan, apoptosis, immune system, isomerase, hydrolase. 
@@ -175,12 +186,19 @@ Classes e.g. Phosphotransferase, Transcription inhibitor having low precision an
  
 # Conclusion
 The study demonstrates that NLP techniques can significantly enhance protein sequence classification. The use of n-grams proved effective in improving classifier performance, and ensemble methods showcased their potential in handling imbalanced datasets. While CNN outperformed LSTM in handling longer sequences, transformer models, particularly ProtBERT, demonstrated superior accuracy and F1 scores, albeit with higher computational requirements. 
+
 The findings of this study highlight the significant potential of natural language processing (NLP) techniques in protein sequence classification. Given the growing amount of biological data, efficient and automated methods are essential. The results demonstrate that various machine learning models, when applied to amino acid n-grams, can achieve noteworthy accuracy and F1 scores, underscoring the effectiveness of this approach.
+
 The K-Nearest Neighbors (KNN) algorithm performed particularly well on tri-gram data, indicating its strength in capturing local sequence similarities. In contrast, models like Logistic Regression, MLP, and Random Forests showed their highest performance with 4-gram data, suggesting that these models benefit from a broader contextual understanding provided by longer n-grams.
+
 The transformer models, particularly ProtBERT, showed promise with competitive F1 scores, although they required significant computational resources. This emphasizes the importance of access to high-performance computing facilities for training such models efficiently. The challenges faced due to limited GPU access and session expiry constraints highlight a practical limitation in the current study, suggesting a need for more robust computational infrastructure for future research.
+
 Despite these promising results, several challenges remain. The primary source of error across models was the imbalanced dataset, with some classes having significantly fewer samples. This imbalance likely hindered the models' ability to generalize well across all classes. Future work could explore advanced techniques for handling class imbalance, such as data augmentation or more sophisticated weighting schemes.
+
 The similarity between sequences from different classes also posed a challenge, potentially confusing the models and reducing classification accuracy. Advanced sequence embedding techniques or incorporating additional biological context could help mitigate this issue.
+
 Furthermore, the results indicate that while CNNs and LSTMs showed reasonable performance, transformer models like BERT variants provided more consistent results across different sequence lengths and configurations. This suggests that transformers may offer a more robust framework for protein sequence classification, benefiting from their ability to capture long-range dependencies and contextual information effectively.
+
 In summary, this study demonstrates the feasibility and effectiveness of using NLP techniques for protein sequence classification. The insights gained here pave the way for further exploration and optimization of these methods, with the potential to significantly enhance our ability to analyze and interpret complex biological data. Future research should focus on addressing the challenges of class imbalance and sequence similarity, as well as leveraging more advanced computational resources to fully realize the potential of these techniques.
 
 # Future work
@@ -210,12 +228,12 @@ In the future, the evaluation metrics for neural network models can be improved 
 20. https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html 
 21. https://scikit- learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html 
 22. https://scikit- learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html 
-23. https://scikit- learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html 
-24. https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html 
-25. https://scikit- 
+23. https://scikit- learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html  
+24. https://scikit- 
 learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html 
-26. https://scikit- 
+25. https://scikit- 
 learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html 
+26.	https://xgboost.readthedocs.io/en/stable/
 27. https://scikit-learn.org/stable/modules/model_evaluation.html 
 28. Francois Chollet, Deep learning with Python, book: 2018
 
