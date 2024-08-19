@@ -23,8 +23,11 @@ The initial preprocessing steps involved merging the two CSV files on the struct
 
 In our analysis of the sequence lengths, as depicted in Fig 1, it is evident that the distribution is highly skewed. The majority of unaligned amino acid sequences fall within a character count range of 50 to 450. This skewness indicates a significant variation in sequence lengths within the dataset, which could have implications for downstream analyses and the computational approaches employed. Understanding the distribution of sequence lengths is crucial for optimizing alignment algorithms and improving the accuracy of subsequent bioinformatics analyses.
 
-![Distribution of Sequence length](https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig1.png) 
-Fig 1. Distribution of Sequence length
+<div align="center">
+  <img src="https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig1.png" alt="Distribution of Sequence length" width="300" />
+  <p><em>Fig 1. Distribution of Sequence length</em></p>
+</div>
+
 
 ### Amino acid Frequency Analysis
 
@@ -157,7 +160,7 @@ Fig 8. Accuracy and loss for CNN model for different sequence length (512, 256, 
 ![Comparison of Deep learning approach](https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig9.png)  
 Fig 9. Comparison of Deep learning approach
 
-From the Fig 19, it is clearly visible that CNN model without class weight demonstrates superior performance in terms of accuracy and F1 scores, indicating better overall classification capability. The CNN model with class weight shows a slight decrease in performance, suggesting that while class weighting can help in addressing class imbalances, it may also introduce complexities that reduce overall effectiveness. The LSTM model underperforms compared to both CNN models, highlighting its limitations in identifying hidden patterns in longer sequences.
+From the Fig 9, it is clearly visible that CNN model without class weight demonstrates superior performance in terms of accuracy and F1 scores, indicating better overall classification capability. The CNN model with class weight shows a slight decrease in performance, suggesting that while class weighting can help in addressing class imbalances, it may also introduce complexities that reduce overall effectiveness. The LSTM model underperforms compared to both CNN models, highlighting its limitations in identifying hidden patterns in longer sequences.
 
 ## Transformer Models
 
@@ -168,20 +171,20 @@ ProtBERT again leads with a weighted F1 score of 76%, indicating it performs wel
 ![Comparison of Bert Models](https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig10.png) 
 Fig 10. Comparison of Bert Models
 
-## Error Analysis
-    
-![Error Analysis](https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig11.png) 
-Figure 11. Error Analysis
+## Error Analysis    
 
 In general, proteins can be different types of enzymes, signalling proteins, structural proteins, and a variety of other options. Since many proteins are designed to bind in the same locations as one another, they frequently exhibit extremely similar properties. A Hydrolase enzyme and a Hydrolase inhibitor protein, for instance, will have similar structures since they focus on the same regions. 
 
-high precision and high recall that means model is able to identify them because these classes either have enough sample or their structure are not similar to others for instance, Allergan, apoptosis, immune system, isomerase, hydrolase. 
+**high precision and high recall** that means model is able to identify them because these classes either have enough sample or their structure are not similar to others for instance, Allergan, apoptosis, immune system, isomerase, hydrolase. 
 
-Classes have high precision and low recall that means model is not identify them correctly, example RNA binding proteins, DNA binding proteins, and transcription proteins, all share characteristics with gene regulator proteins and Cell invasion, Cell adhesion having similarity with cell cycle that make model difficult to identify them. 
+Classes have **high precision and low recall** that means model is not identify them correctly, example RNA binding proteins, DNA binding proteins, and transcription proteins, all share characteristics with gene regulator proteins and Cell invasion, Cell adhesion having similarity with cell cycle that make model difficult to identify them. 
 
-Classes are showing low precision and high recall like electron transport and oxygen storage, model is able to well detect these classes but also includes observations from other classes as well, for instance oxygen storage might be make model misleading for oxygen transport. 
+Classes are showing **low precision and high recall** like electron transport and oxygen storage, model is able to well detect these classes but also includes observations from other classes as well, for instance oxygen storage might be make model misleading for oxygen transport. 
 
-Classes e.g. Phosphotransferase, Transcription inhibitor having low precision and low recall which means model is not able to identify correct classes and model is not doing well on the entire test dataset to find correct classes. On the other side some classes like, Ribosome having low precision and low recall because of similarity with ribosomal protein (fundamental building blocks for ribosome) that means model is not able to detect correct class.
+Classes e.g. Phosphotransferase, Transcription inhibitor having **low precision and low recall** which means model is not able to identify correct classes and model is not doing well on the entire test dataset to find correct classes. On the other side some classes like, Ribosome having low precision and low recall because of similarity with ribosomal protein (fundamental building blocks for ribosome) that means model is not able to detect correct class.
+
+![Error Analysis](https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig11.png) 
+Figure 11. Error Analysis
 
  
 # Conclusion
