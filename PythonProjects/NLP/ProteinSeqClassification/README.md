@@ -173,7 +173,7 @@ Fig 8 illustrates that the CNN model's accuracy and loss trends are consistent f
 From the Fig 9, it is clearly visible that CNN model without class weight demonstrates superior performance in terms of accuracy and F1 scores, indicating better overall classification capability. The CNN model with class weight shows a slight decrease in performance, suggesting that while class weighting can help in addressing class imbalances, it may also introduce complexities that reduce overall effectiveness. The LSTM model underperforms compared to both CNN models, highlighting its limitations in identifying hidden patterns in longer sequences.
 
 <div align="center">
-  <img src="https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig9.png" alt="Comparison of Deep learning approach" width="300" />
+  <img src="https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig9.png" alt="Comparison of Deep learning approach" width="400" />
   <p><em>Fig 9. Comparison of Deep learning approach</em></p>
 </div>
 
@@ -202,7 +202,7 @@ Classes are showing **low precision and high recall** like electron transport an
 Classes e.g. Phosphotransferase, Transcription inhibitor having **low precision and low recall** which means model is not able to identify correct classes and model is not doing well on the entire test dataset to find correct classes. On the other side some classes like, Ribosome having low precision and low recall because of similarity with ribosomal protein (fundamental building blocks for ribosome) that means model is not able to detect correct class.
 
 <div align="center">
-  <img src="https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig11.png" alt="Error Analysis" width="300" />
+  <img src="https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig11.png" alt="Error Analysis" width="500" />
   <p><em>Fig 11. Error Analysis</em></p>
 </div>
  
