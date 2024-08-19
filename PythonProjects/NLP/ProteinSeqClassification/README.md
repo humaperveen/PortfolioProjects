@@ -33,8 +33,10 @@ In our analysis of the sequence lengths, as depicted in Fig 1, it is evident tha
 
 Amino acid sequences are represented with their corresponding 1-letter code, for example, the code for alanine is (A), arginine is (R), and so on. In our analysis, Fig 2 highlights the frequency distribution of amino acids in the dataset. It is evident that leucine (L) appears most frequently, succeeded by alanine (A), glycine (G), and valine (V). This observation aligns with the known biological abundance of these amino acids in various proteins. Additionally, our sequence encoding approach focused on the 20 standard amino acids, deliberately excluding the rare amino acids such as X (any amino acid), U (selenocysteine), B (asparagine or aspartic acid), O (pyrrolysine), and Z (glutamine or glutamic acid) to streamline the analysis and ensure consistency.
 
-![Amino Acid Distribution](https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig2.png) 
-Fig 2. Amino Acid Distribution
+<div align="center">
+  <img src="https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig2.png" alt="Amino Acid Distribution" width="300" />
+  <p><em>Fig 2. Amino Acid Distribution</em></p>
+</div>
 
 
 ## Machine Learning Methods
@@ -60,23 +62,28 @@ The data was split into training, validation, and test sets in a 70:10:20 ratio.
    
 An embedding layer for the mapping input layer is used. Then, a layer of CuDNNLSTM is used for faster implementation. The dropout layer with 20% neuron dropout applied that adds representational capacity to the model and prevents overfitting. Eventually, a dense layer is used as the output layer with softmax activation. The model is trained using categorical cross entropy and is compiled using Adam optimizer. An outline of proposed implementation steps is drawn in Fig 3.
 
-![LSTM Implementation Outline](https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig3.png) 
-Fig 3. LSTM Implementation Outline
+<div align="center">
+  <img src="https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig3.png" alt="LSTM Implementation Outline" width="500" />
+  <p><em>Fig 3. LSTM Implementation Outline</em></p>
+</div>
 
 2. **CNN 1D**
 
 Recent success in NLP suggests using word embeddings which are already implemented as a Keras Embedding layer. Note that in this dataset, there are only 20 different words (for each amino acid). Instead of using every n-gram, using 1D-convolution on the embedded sequences is considered. The size of the convolutional kernel can be seen as the size of n-grams and the number of filters as the number of words as shown in Fig 4 below.
 
-![CNN1D Mechanism](https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig4.png)  
-Fig 4. CNN1D Mechanism
+<div align="center">
+  <img src="https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig4.png" alt="CNN1D Mechanism" width="400" />
+  <p><em>Fig 4. CNN1D Mechanism</em></p>
+</div>
 
 A multichannel architecture is used for Convolutional neural network implementation. There are 3 channels. Filter size is 128 and kernel size is 12 in first channel. In second channel filter size is 64 and kernel size is 6 while in third channel filter size and kernel size are  32 and 3 respectively. These filters slide across the input sequence, performing element-wise multiplications and summations to produce feature maps. The filters capture local patterns and dependencies within the sequence of kernel size like n-gram. Each filter learns different features, allowing the model to capture diverse aspects of the input sequence. The filters with different widths help to capture patterns of varying lengths. An activation function ReLU (Rectified Linear Unit) is applied element-wise to introduce non-linearity into the model which sets negative values to zero. 
 
 Dropout value is set 0.2, dropout works by "dropping out" a fraction of the neurons in a layer with a specified probability of 0.2. This means that the output of those neurons is temporarily ignored or set to zero. Maxpooling1D layer pool size is kept 2. It selects the maximum value within a fixed window size, reducing the dimensionality of the feature maps while preserving the most salient information. The output of the pooling layers is flattened into a one-dimensional vector. After flattening three channels are concatenated together. Then, a fully connected dense layer is  applied that adds representational capacity to the model. Finally, a dense layer is used as the output layer with softmax activation. The model is trained using categorical cross entropy and is compiled using Adam optimizer. An outline of proposed implementation of convolutional neural network is drawn in Fig 5 below.
 
-![Multi-channel CNN Implementation Outline](https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig5.png)
-Fig 5. Multi-channel CNN Implementation Outline
-
+<div align="center">
+  <img src="https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig5.png" alt="Multi-channel CNN Implementation Outline" width="400" />
+  <p><em>Fig 5. Multi-channel CNN Implementation Outline</em></p>
+</div>
  
 ## Bidirectional Encoder Representations from Transformers (BERT) Models
 
@@ -140,27 +147,36 @@ $$F1-Score=  (2(Precision*Recall))/(Precision+Recall)$$
 
 Fig 6 presents a visual comparison of the F1 scores achieved by various machine learning models across different n-gram ranges (uni-gram, bi-gram, tri-gram, and 4-gram). The analysis indicates that models such as K-Nearest Neighbors (KNN), Random Forest, XGBoost, Voting, and Stacking Classifiers maintain consistent F1 scores between 60.0% and 65.0% regardless of the n-gram range, demonstrating their robustness to changes in text representation. The Multi-Layer Perceptron (MLP) shows the lowest performance with the uni-gram model, but its performance improves with higher n-gram ranges, plateauing between the 3-gram and 4-gram models. On the other hand, Multinomial Naïve Bayes and Logistic Regression models exhibit significant improvements in accuracy and F1 score when moving from bi-gram to 3-gram, indicating a strong dependency on n-gram range. Notably, ensemble methods, particularly the Voting Soft classifier, outperform individual models, achieving the highest accuracy (74%), weighted F1 score (74%) and macro f1 score (65%), emphasizing their effectiveness in handling imbalanced datasets.
 
-![Comparison of models’ macro f1 score for 1-4 grams](https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig6.jpg)
-Fig 6. Comparison of models’ macro f1 score for 1-4 grams
+<div align="center">
+  <img src="https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig6.jpg" alt="Comparison of ML models" width="300" />
+  <p><em>Fig 6. Comparison of models’ macro f1 score for 1-4 grams</em></p>
+</div>
 
 ## Deep Learning
  
 6 experiments are carried out for three different protein sequence lengths with and without class weight for CNN and 3 experiments for LSTM. The LSTM model shows moderate training and validation accuracy, indicating a reasonable but not optimal fit to both the training and validation data. The loss values indicate a moderate level of error in predictions. The F1 scores, particularly the macro F1 score, suggest that while the model performs reasonably well on more frequent classes, its performance on less frequent classes is less reliable and quite variable 
 
-![Accuracy and loss for LSTM model](https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig7.png) 
-Fig 7. Accuracy and loss for LSTM model for different sequence length (512, 256, 100)
+<div align="center">
+  <img src="https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig7.png" alt="Accuracy and loss for LSTM model" width="600" />
+  <p><em>Fig 7. Accuracy and loss for LSTM model for different sequence length (512, 256, 100)</em></p>
+</div>
 
 The CNN model shows good training accuracy, indicating effective learning, though with notable performance variability. The training loss reflects accurate predictions but inconsistent errors. Validation metrics indicate moderate generalization with more stable performance than training. F1 scores suggest the model handles frequent classes well, but performance varies across different classes.
 
 Fig 8 illustrates that the CNN model's accuracy and loss trends are consistent for sequence lengths of 256 and 512, indicating stable model performance across these lengths. However, when the sequence length is reduced to 100, the model struggles to accurately classify protein sequences, resulting in higher loss values. This increased loss suggests a significant drop in model performance, highlighting that shorter sequence lengths are less effective for identifying the correct class in protein sequence classification tasks. The data suggests that longer sequences provide more information, leading to more reliable model predictions and better overall performance.
- 
-![Accuracy and loss for CNN model](https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig8.png)
-Fig 8. Accuracy and loss for CNN model for different sequence length (512, 256, 100)
 
-![Comparison of Deep learning approach](https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig9.png)  
-Fig 9. Comparison of Deep learning approach
+<div align="center">
+  <img src="https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig8.png" alt="Accuracy and loss for CNN model" width="600" />
+  <p><em>Fig 8. Accuracy and loss for CNN model for different sequence length (512, 256, 100)</em></p>
+</div>
 
 From the Fig 9, it is clearly visible that CNN model without class weight demonstrates superior performance in terms of accuracy and F1 scores, indicating better overall classification capability. The CNN model with class weight shows a slight decrease in performance, suggesting that while class weighting can help in addressing class imbalances, it may also introduce complexities that reduce overall effectiveness. The LSTM model underperforms compared to both CNN models, highlighting its limitations in identifying hidden patterns in longer sequences.
+
+<div align="center">
+  <img src="https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig9.png" alt="Comparison of Deep learning approach" width="300" />
+  <p><em>Fig 9. Comparison of Deep learning approach</em></p>
+</div>
+
 
 ## Transformer Models
 
@@ -168,8 +184,10 @@ Fig 10 presents the performance of three different BERT-based transformer models
 
 ProtBERT again leads with a weighted F1 score of 76%, indicating it performs well across classes considering the class distribution. BertForSequenceClassification and DistilBERT had similar performances with slight variations. BertForSequenceClassification and DistilBERT have similar weighted F1 scores, 73% and 72%, respectively. All models have the same macro F1 score of 61%, reflecting their balanced performance across all classes, irrespective of class distribution.
 
-![Comparison of Bert Models](https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig10.png) 
-Fig 10. Comparison of Bert Models
+<div align="center">
+  <img src="https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig10.png" alt="Comparison of Bert Models" width="300" />
+  <p><em>Fig 10. Comparison of Bert Models</em></p>
+</div>
 
 ## Error Analysis    
 
@@ -183,9 +201,10 @@ Classes are showing **low precision and high recall** like electron transport an
 
 Classes e.g. Phosphotransferase, Transcription inhibitor having **low precision and low recall** which means model is not able to identify correct classes and model is not doing well on the entire test dataset to find correct classes. On the other side some classes like, Ribosome having low precision and low recall because of similarity with ribosomal protein (fundamental building blocks for ribosome) that means model is not able to detect correct class.
 
-![Error Analysis](https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig11.png) 
-Figure 11. Error Analysis
-
+<div align="center">
+  <img src="https://github.com/humaperveen/PortfolioProjects/blob/main/PythonProjects/NLP/ProteinSeqClassification/assets/Fig11.png" alt="Error Analysis" width="300" />
+  <p><em>Fig 11. Error Analysis</em></p>
+</div>
  
 # Conclusion
 The study demonstrates that NLP techniques can significantly enhance protein sequence classification. The use of n-grams proved effective in improving classifier performance, and ensemble methods showcased their potential in handling imbalanced datasets. While CNN outperformed LSTM in handling longer sequences, transformer models, particularly ProtBERT, demonstrated superior accuracy and F1 scores, albeit with higher computational requirements. 
